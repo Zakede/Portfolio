@@ -12,10 +12,20 @@ body{
 
 .navbar {
     background-color: #0E0D0A;
-    height: 70px;
     margin-left: 15%;
     margin-right: 15%;
     margin-top: 1%;
+    position: relative;
+}
+
+.navbar::after {
+    content: ""; 
+    position: absolute;
+    left: -4%; 
+    right: -4%;
+    bottom: 0;
+    height: 2px;
+    background-color: white;
 }
 
 .nav-container {
@@ -35,16 +45,78 @@ body{
 
 .nav-links {
     display: flex;
-    gap: 20px;
+    gap: 30px;
 }
 
 .nav-link {
     color: white;
     text-decoration: none;
-    font-size: 1.7rem;
-    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    font-family: "Anton", serif;
 }
 
 .nav-link:hover {
     color: white;
 }
+
+.front-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding: 20px;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 2%;
+    margin-bottom: 4%;
+}
+
+.panel-text {
+    font-family: 'Funnel', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    max-width: 60%;
+}
+
+.panel-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    height: 120px;
+    width: auto;
+}
+
+.logo-link {
+    display: inline-block;
+}
+
+.skills-section {
+    padding-top: 2%;
+    padding-bottom: 2%;
+    background-color: #0E0D0A;
+    color: white;
+    text-align: center;
+    background-color: white;
+}
+
+.skill-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    margin-left: 12%;
+    margin-right: 12%;
+}
+
+.skill-item {
+    background-color: white;
+    font-family: 'Anton', sans-serif;
+    font-size: 1.5rem;
+    padding: 0 60px;
+    white-space: nowrap;
+    color: #0E0D0A;
+}
+
