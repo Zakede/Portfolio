@@ -1,5 +1,6 @@
 from fasthtml.common import *
 import requests, json, base64
+from discord_webhook import DiscordWebhook
 from io import *
 
 app, rt = fast_app(static_path="public", pico=False)
@@ -20,7 +21,8 @@ def home():
         Link(rel="preconnect", href="https://fonts.googleapis.com"),
         Link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin="true"),
         Link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&display=swap"),
-        Link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Anton&display=swap"),
+        Link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Jomhuria&display=swap"),
+        
         Link(rel="stylesheet", href="styles.css"), 
         
         Title("Mannat's Portfolio"), 
@@ -39,7 +41,7 @@ def home():
             cls="nav-container",
         ),
         Br(),
-        cls="navbar"
+        cls="navbar fade-in"
         ),
     
     Div(
@@ -57,7 +59,7 @@ def home():
             A(Img(src="Assets/Rat.png", alt="Logo", cls="logo", draggable="false"), href="/", cls="logo-link"),
             cls="panel-logo-container"
         ), 
-        cls="front-panel"
+        cls="front-panel fade-in"
     ),
     
 
@@ -66,14 +68,83 @@ def home():
             *[Div(skill, cls="skill-item") for skill in skills], 
             cls="skill-bar"
         ),
-        cls="skills-section"
+        cls="skills-section fade-in"
+    ),
+    
+    Div(
+        H1("Check Out My Works", cls="carousel-title"),
+        Div(
+            Img(src="Assets/Rat.png", alt="Image 1", cls="carousel-item"),
+            Img(src="Assets/Logo.svg", alt="Image 2", cls="carousel-item"),
+            Img(src="Assets/Rat.png", alt="Image 3", cls="carousel-item"),
+            cls="carousel-container"
+        ),
+        cls="carousel fade-in",
+    ), Script(src="carousel.js"),
+    
+    A(H1("Check For More!"), cls="carousel-link fade-in", href="/portfolio"),
+
+    Div(
+        Div(
+        H1("Want To Work Together?", cls="form-title"),
+        H1("Contact Me!", cls="form-title-lower"),
+        Div(
+            Form(method="post", action="/send")(
+                Div(
+                    Label("Name", for_attr="name", cls="form-label"),
+                    Input(type="text", id="name", name="name", cls="form-input"),
+                    cls="form-group"
+                ),
+                Div(
+                    Label("Email", for_attr="email", cls="form-label"),
+                    Input(type="email", id="email", name="email", cls="form-input"),
+                    cls="form-group"
+                ),
+                Div(
+                    Label("Enquiry", for_attr="enquiry", cls="form-label"),
+                    Textarea(
+                        id="enquiry", 
+                        name="enquiry", 
+                        rows="4", 
+                        cls="form-textarea", 
+                        maxlength="200",
+                    ),
+                    cls="form-group"
+                ),
+                Button("Send", type="submit", cls="form-submit"),
+                cls="contact-form"
+            ),
+            cls="contact-form-container"
+            ),cls="contact-inputs"
+        ), cls="contact-container"
+    ),
+    
+    
+
     )
+    
+@app.post("/send")
+async def upload(request: Request):
+    form = await request.form()
+    name = form.get("name")
+    email =  form.get("emaill")
+    enquiry = form.get("enquiry")
 
-
-
+    mail = (f""" ``` {name} \n {email} \n {enquiry}```""")
+    url = "https://discord.com/api/webhooks/1304743185876254720/8WGrZVH-GDdlSOlxExSsOrdhkipzdd6_ergIBgbjzpNGrwkZe4aIjsuXr5vZMknW-LXS"
     
+    webhook = DiscordWebhook(url=f"{url}", content=f"{mail}")
+    response = webhook.execute()
     
+    if response.status_code == 200:
+        return (
+            Link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Jomhuria&display=swap"), 
+            Link(rel="stylesheet", href="styles_send.css"), H1("I've Recived Your Mail!"))
+        
+    else:
+        return (
+            Link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Jomhuria&display=swap"), 
+            Link(rel="stylesheet", href="styles_send.css"), H1("Please Try Again!"))
     
-    )
-    
+     
 serve()

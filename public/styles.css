@@ -2,6 +2,31 @@
     margin: 0;
     padding: 0;
     background-color: #0E0D0A;
+    transition: all .2s ease-in;
+    scroll-behavior: smooth;
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeInAnimation 3s forwards;
+}
+
+@keyframes fadeInAnimation {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0E0D0A;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: white;
+    /* border-radius: 10px; */
 }
 
 body{
@@ -51,8 +76,8 @@ body{
 .nav-link {
     color: white;
     text-decoration: none;
-    font-size: 2rem;
-    font-family: "Anton", serif;
+    font-size: 4rem;
+    font-family: "Jomhuria", serif;
 }
 
 .nav-link:hover {
@@ -60,8 +85,8 @@ body{
 }
 
 .front-panel {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 60% 40%;
     align-items: center;
     color: white;
     padding: 20px;
@@ -75,7 +100,6 @@ body{
     font-family: 'Funnel', sans-serif;
     font-size: 1.2rem;
     line-height: 1.6;
-    max-width: 60%;
 }
 
 .panel-logo-container {
@@ -93,6 +117,7 @@ body{
     display: inline-block;
 }
 
+
 .skills-section {
     padding-top: 2%;
     padding-bottom: 2%;
@@ -100,6 +125,7 @@ body{
     color: white;
     text-align: center;
     background-color: white;
+    margin-bottom: 6%;
 }
 
 .skill-bar {
@@ -107,16 +133,160 @@ body{
     justify-content: space-between;
     align-items: center;
     background-color: white;
-    margin-left: 12%;
-    margin-right: 12%;
+    margin-left: 15%;
+    margin-right: 15%;
 }
 
 .skill-item {
     background-color: white;
-    font-family: 'Anton', sans-serif;
-    font-size: 1.5rem;
-    padding: 0 60px;
+    font-family: 'Jomhuria', sans-serif;
+    font-size: 4rem;
     white-space: nowrap;
     color: #0E0D0A;
 }
 
+.carousel-title {
+    text-align: center;
+    font-family: 'Jomhuria', sans-serif;
+    font-size: 5rem;
+    color: white;
+    padding-bottom: 2%;
+}
+
+.carousel-link {
+    text-align: center;
+    font-family: 'Jomhuria', sans-serif;
+    font-size: 2rem;
+    color: white;
+    margin-top: 5%;
+    padding-bottom: 2%;
+    margin-bottom: 5%;
+
+}
+
+.carousel-link:visited {
+    text-align: center;
+    font-family: 'Jomhuria', sans-serif;
+    font-size: 2rem;
+    color: white;
+    margin-top: 5%;
+    padding-bottom: 2%;
+    /* text-decoration: none; */
+}
+
+.carousel {
+    position: relative;
+    width: 100%; 
+    margin: 0 auto;
+    overflow: hidden; 
+    margin-bottom: 4%;
+}
+
+.contact-container {
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    margin-top: 4%;
+
+}
+
+.contact-inputs {
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.carousel-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    width: 100%; 
+    object-fit: cover;
+}
+
+.form-title {
+    /* margin-top: 4% ; */
+    padding-top: 4%;
+    color: white;
+    text-align: center;
+    font-size: 5rem;
+    font-family: 'Jomhuria', sans-serif;
+}
+
+.form-title-lower {
+    color: white;
+    text-align: center;
+    font-size: 4rem;
+    font-family: 'Jomhuria', sans-serif;    
+}
+
+.contact-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    font-family: 'Funnel', sans-serif;
+    font-size: 3rem;
+}
+
+.contact-form {
+    padding: 20px;
+    width: 100%;
+    max-width: 40vw;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2%
+}
+
+.form-label {
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+    color: #ffffff;
+}
+
+.form-input, .form-textarea {
+    padding: 10px;
+    border: 1px solid white;
+    color: #fff;
+    font-size: 16px;
+}
+
+.form-input:focus, .form-textarea:focus, .form-submit:focus {
+    outline: none; 
+    border-color: white; 
+}
+
+#enquiry {
+    height: 10vh;
+    resize: none;
+}
+
+.form-submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50%;
+    padding: 10px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border: 1px solid white;
+    transition: background-color 0.3s ease;
+    color: #fff;
+    font-family: 'Funnel', sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0 auto; 
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+.form-submit:hover {
+    background-color: white;
+    color: #0E0D0A;
+}
